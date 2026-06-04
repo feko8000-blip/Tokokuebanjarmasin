@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agen Buah Gondrong — Segar Setiap Saat</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF5E9;
+    --gold: #C8963E;
+    --gold-light: #E8B96A;
+    --green-deep: #1A3025;
+    --green-mid: #2E5038;
+    --green-fresh: #4A7C5F;
+    --orange: #D4622A;
+    --orange-light: #F08C52;
+    --white: #FFFEF8;
+    --text-dark: #1A1A14;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--green-deep);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(74,124,95,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 85% 20%, rgba(200,150,62,0.2) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(212,98,42,0.08) 0%, transparent 60%);
+  }
+
+  /* Floating fruit silhouettes */
+  .fruit-float {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.07;
+    animation: floatUp 8s ease-in-out infinite;
+  }
+  .fruit-float:nth-child(1) { width: 300px; height: 300px; background: var(--gold); top: -80px; right: -60px; animation-delay: 0s; }
+  .fruit-float:nth-child(2) { width: 180px; height: 180px; background: var(--orange); bottom: 10%; left: -40px; animation-delay: 2s; }
+  .fruit-float:nth-child(3) { width: 120px; height: 120px; background: var(--green-fresh); top: 30%; right: 15%; animation-delay: 4s; }
+
+  @keyframes floatUp {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.03); }
+  }
+
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(to bottom, rgba(26,48,37,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(250,245,233,0.75);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 1.5rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(200,150,62,0.15);
+    border: 1px solid rgba(200,150,62,0.35);
+    border-radius: 100px;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 2rem;
+    animation: fadeDown 0.9s ease both;
+  }
+
+  .dot-pulse {
+    width: 6px; height: 6px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 10vw, 7.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    animation: fadeDown 0.9s ease 0.15s both;
+  }
+
+  .hero-title em {
+    display: block;
+    font-style: italic;
+    color: var(--gold-light);
+    font-weight: 300;
+  }
+
+  .hero-subtitle {
+    margin-top: 1.8rem;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(250,245,233,0.6);
+    letter-spacing: 0.04em;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+    animation: fadeDown 0.9s ease 0.3s both;
+  }
+
+  .hero-cta {
+    margin-top: 2.8rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeDown 0.9s ease 0.45s both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green-deep);
+    padding: 0.9rem 2.2rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(200,150,62,0.3);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(250,245,233,0.3);
+    color: var(--cream);
+    padding: 0.9rem 2.2rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold-light);
+    color: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(250,245,233,0.4);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: fadeDown 1s ease 0.8s both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(200,150,62,0.6), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--green-mid);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(250,245,233,0.55);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* ── SECTION SHARED ── */
+  section {
+    padding: 7rem 2rem;
+  }
+
+  .section-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--green-deep);
+  }
+
+  .section-title em { font-style: italic; color: var(--green-fresh); }
+
+  /* ── ABOUT ── */
+  .about {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #4A4A3A;
+    font-weight: 300;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card {
+    background: var(--green-deep);
+    border-radius: 24px;
+    padding: 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(200,150,62,0.2), transparent 70%);
+    border-radius: 50%;
+  }
+
+  .about-card-emoji {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .about-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+
+  .about-card p {
+    color: rgba(250,245,233,0.6);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .open-badge {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(74,222,128,0.12);
+    border: 1px solid rgba(74,222,128,0.25);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.78rem;
+    color: #4ade80;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── PRODUCTS ── */
+  .products-section {
+    background: var(--green-deep);
+  }
+
+  .products-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .products-header .section-title { color: var(--cream); }
+  .products-header .section-tag { color: var(--gold-light); }
+  .products-header em { color: var(--gold-light); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: rgba(255,254,248,0.06);
+    border: 1px solid rgba(255,254,248,0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.4s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--orange-light));
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+
+  .product-card:hover {
+    background: rgba(255,254,248,0.1);
+    transform: translateY(-6px);
+    border-color: rgba(200,150,62,0.3);
+  }
+
+  .product-card:hover::after { transform: scaleX(1); }
+
+  .product-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .product-desc {
+    font-size: 0.83rem;
+    color: rgba(250,245,233,0.5);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .product-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    background: rgba(200,150,62,0.15);
+    color: var(--gold-light);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+  }
+
+  /* ── WHY ── */
+  .why-section {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .why-grid {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .why-item {
+    padding: 2rem 1.5rem;
+    border-left: 2px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .why-item:hover { border-left-color: var(--gold); }
+
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(200,150,62,0.2);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .why-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 0.6rem;
+  }
+
+  .why-desc {
+    font-size: 0.85rem;
+    color: #6A6A5A;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── LOCATION ── */
+  .location-section {
+    background: var(--green-deep);
+    padding: 7rem 2rem;
+  }
+
+  .location-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .location-inner .section-title { color: var(--cream); }
+  .location-inner .section-tag { color: var(--gold-light); }
+  .location-inner em { color: var(--gold-light); }
+
+  .location-card {
+    margin-top: 3.5rem;
+    background: rgba(255,254,248,0.05);
+    border: 1px solid rgba(200,150,62,0.2);
+    border-radius: 24px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    text-align: left;
+  }
+
+  .loc-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .loc-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .loc-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .loc-phone {
+    font-size: 1.3rem;
+    color: var(--gold-light);
+  }
+
+  .map-btn {
+    margin-top: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--gold);
+    color: var(--green-deep);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .map-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(200,150,62,0.25);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0F1E16;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-sub {
+    font-size: 0.75rem;
+    color: rgba(250,245,233,0.3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .footer-divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(200,150,62,0.3);
+    margin: 1.8rem auto;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(250,245,233,0.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .about { grid-template-columns: 1fr; gap: 3rem; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .location-card { grid-template-columns: 1fr; }
+    .stats-bar { gap: 2.5rem; }
+    section { padding: 5rem 1.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Buah Gondrong</div>
+  <ul class="nav-links">
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#produk">Produk</a></li>
+    <li><a href="#keunggulan">Keunggulan</a></li>
+    <li><a href="#lokasi">Lokasi</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="fruit-float"></div>
+  <div class="fruit-float"></div>
+  <div class="fruit-float"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot-pulse"></span>
+      Buka 24 Jam · Kalimantan Selatan
+    </div>
+    <h1 class="hero-title">
+      Agen Buah
+      <em>Gondrong</em>
+    </h1>
+    <p class="hero-subtitle">
+      Buah segar pilihan langsung dari kebun terbaik. Kualitas premium, harga bersahabat, tersedia setiap saat untuk keluarga Anda.
+    </p>
+    <div class="hero-cta">
+      <a href="#produk" class="btn-primary">Lihat Produk</a>
+      <a href="#lokasi" class="btn-outline">Temukan Kami</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Gulir</span>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">24</div>
+    <div class="stat-label">Jam Buka</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">15+</div>
+    <div class="stat-label">Jenis Buah</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Buah Segar</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">5★</div>
+    <div class="stat-label">Kepuasan Pelanggan</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="tentang">
+  <div class="about reveal">
+    <div class="about-text">
+      <p class="section-tag">Tentang Kami</p>
+      <h2 class="section-title">Kesegaran yang <em>Tak Pernah Berhenti</em></h2>
+      <p>Agen Buah Gondrong hadir untuk memastikan Anda selalu mendapatkan buah terbaik kapan pun dibutuhkan. Beroperasi 24 jam penuh, kami menyediakan berbagai pilihan buah segar berkualitas tinggi untuk kebutuhan sehari-hari maupun acara spesial.</p>
+      <p>Dari mangga madu yang manis hingga buah-buahan tropis pilihan lainnya, setiap produk kami dipilih dengan teliti untuk menjamin kepuasan pelanggan setia kami di Banjarbaru dan sekitarnya.</p>
+    </div>
+    <div class="about-visual">
+      <div class="about-card">
+        <span class="about-card-emoji">🥭</span>
+        <h3>Spesialis Mangga Segar</h3>
+        <p>Mangga pilihan kualitas terbaik, manis, dan segar langsung untuk meja makan Anda setiap harinya.</p>
+        <div class="open-badge">
+          <span class="dot-pulse"></span>
+          Tersedia sekarang
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="produk" class="products-section">
+  <div class="products-inner">
+    <div class="products-header reveal">
+      <div>
+        <p class="section-tag">Pilihan Buah</p>
+        <h2 class="section-title">Produk <em>Unggulan</em></h2>
+      </div>
+      <a href="tel:08135022-1206" class="btn-primary">Pesan Sekarang</a>
+    </div>
+    <div class="products-grid reveal">
+      <div class="product-card">
+        <span class="product-icon">🥭</span>
+        <div class="product-name">Mangga Madu</div>
+        <div class="product-desc">Manis legit dengan tekstur lembut. Pilihan favorit pelanggan kami setiap musim.</div>
+        <span class="product-tag">Terlaris</span>
+      </div>
+      <div class="product-card">
+        <span class="product-icon">🍉</span>
+        <div class="product-name">Semangka</div>
+        <div class="product-desc">Segar, merah, dan menyegarkan. Sempurna untuk cuaca panas Kalimantan.</div>
+        <span class="product-tag">Segar</span>
+      </div>
+      <div class="product-card">
+        <span class="product-icon">🍌</span>
+        <div class="product-name">Pisang</div>
+        <div class="product-desc">Berbagai varietas pisang lokal pilihan, matang sempurna dan penuh gizi.</div>
+        <span class="product-tag">Lokal</span>
+      </div>
+      <div class="product-card">
+        <span class="product-icon">🍍</span>
+        <div class="product-name">Nanas</div>
+        <div class="product-desc">Nanas segar asam-manis, kaya vitamin C untuk kesehatan keluarga Anda.</div>
+        <span class="product-tag">Vitamin C</span>
+      </div>
+      <div class="product-card">
+        <span class="product-icon">🍇</span>
+        <div class="product-name">Anggur</div>
+        <div class="product-desc">Anggur impor berkualitas, tersedia dalam beberapa varietas pilihan.</div>
+        <span class="product-tag">Impor</span>
+      </div>
+      <div class="product-card">
+        <span class="product-icon">🥑</span>
+        <div class="product-name">Alpukat</div>
+        <div class="product-desc">Alpukat mentega creamy, ideal untuk jus, salad, maupun dimakan langsung.</div>
+        <span class="product-tag">Premium</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="keunggulan">
+  <div class="why-section">
+    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto 0;">
+      <p class="section-tag">Kenapa Kami</p>
+      <h2 class="section-title">Keunggulan yang <em>Membedakan</em> Kami</h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <div class="why-title">Buka 24 Jam</div>
+        <div class="why-desc">Kami selalu siap melayani Anda kapanpun Anda membutuhkan buah segar, siang maupun malam.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <div class="why-title">Kualitas Terjamin</div>
+        <div class="why-desc">Setiap buah dipilih dengan teliti untuk memastikan kesegaran dan kualitas terbaik sampai ke tangan Anda.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <div class="why-title">Harga Bersahabat</div>
+        <div class="why-desc">Buah berkualitas premium tidak harus mahal. Kami menawarkan harga terbaik untuk pelanggan kami.</div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <div class="why-title">Pilihan Lengkap</div>
+        <div class="why-desc">Dari buah lokal hingga impor, tersedia dalam berbagai ukuran dan kemasan sesuai kebutuhan Anda.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="lokasi" class="location-section">
+  <div class="location-inner reveal">
+    <p class="section-tag">Temukan Kami</p>
+    <h2 class="section-title">Lokasi & <em>Kontak</em></h2>
+    <div class="location-card">
+      <div class="loc-item">
+        <span class="loc-label">Alamat</span>
+        <span class="loc-value">Jl. Rambai Tengah No.83, Loktabat Sel., Kec. Banjarbaru Selatan, Kota Banjar Baru, Kalimantan Selatan 70714</span>
+      </div>
+      <div class="loc-item">
+        <span class="loc-label">Telepon</span>
+        <a href="tel:08135022-1206" class="loc-value loc-phone" style="text-decoration:none;">0813-5022-1206</a>
+        <span class="loc-value" style="font-size:0.85rem; color: rgba(250,245,233,0.4); font-family:'DM Sans',sans-serif; margin-top: 0.5rem;">Hubungi kami kapan saja</span>
+      </div>
+      <div class="loc-item">
+        <span class="loc-label">Jam Operasional</span>
+        <span class="loc-value" style="color: #4ade80;">Buka 24 Jam</span>
+        <span class="loc-value" style="font-size:0.85rem; color: rgba(250,245,233,0.4); font-family:'DM Sans',sans-serif; margin-top:0.5rem;">Senin – Minggu</span>
+      </div>
+    </div>
+    <a href="https://maps.app.goo.gl/example" class="map-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Buka di Google Maps
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Buah Gondrong</div>
+  <div class="footer-sub">Segar Setiap Saat · Banjarbaru, Kalimantan Selatan</div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">© 2026 Agen Buah Gondrong. Semua hak dilindungi.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
